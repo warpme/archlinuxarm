@@ -1,0 +1,124 @@
+myth archlinuxarm
+=================
+
+if required: resize root partition
+1. take a note of a starting sector of a partition to resize (examplary  374784)
+2. Start fdisk in /dev/<disk>
+3. Remove the partition and recreate a new, larger partition starting from sector 374784. and with desired new size
+4. write new prtitions in fdisk. exit fdisk
+5. resize filesystem to new part.size by resize2fs /dev/<part>
+6. reboot
+
+
+
+run full system update
+======================
+pacman -Sy
+pacman -Su
+reboot
+
+
+install some basic software
+===========================
+pacman -S mc htop wget sudo git
+
+
+enable remote ssh login (if needed)
+===================================
+-uncomment ListenAddress 0.0.0.0
+-change to „PermitRootLogin yes”
+-change to „PubkeyAuthentication yes”
+-change PasswordAutentication yes”
+-change to „X11Forwarding yes”
+sed ”s|^#ListenAddress 0\.0\.0\.0.*|ListenAddress 0.0.0.0|g” -i /etc/ssh/sshd_config 
+sed ”s|^#PermitRootLogin.*|PermitRootLogin yes|g” -i /etc/ssh/sshd_config
+sed ”s|^#PubkeyAuthentication.*|PubkeyAuthentication yes|g” -i /etc/ssh/sshd_config
+sed ”s|^#PasswordAutentication.*|PasswordAutentication yes|g” -i /etc/ssh/sshd_config
+sed ”s|^#X11Forwarding.*|X11Forwarding yes”|g -i /etc/ssh/sshd_config
+systemctl enable sshd
+
+
+install Xorg server
+===================
+pacman -S xorg-server xf86-input-evdev xf86-input-libinput xorg-xkbcomp xorg-xinit x11vnc blackbox xorg-xclock xorg-xhost xterm mesa
+configure Xorg server 
+touch /etc/X11/Xwrapper.config
+echo allowed_users=anybody > /etc/X11/Xwrapper.config
+mv /etc/X11/xinit/xinitrc /etc/X11/xinit/xinitrc.original
+touch /etc/X11/xinit/xinitrc
+cat <<EOF > /etc/X11/xinit/xinitrc
+if [ -d /etc/X11/xinit/xinitrc.d ] ; then
+ for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+  [ -x "$f" ] && . "$f"
+ done
+ unset f
+fi
+blackbox &
+xclock -geometry 50x50-10+10 &
+x11vnc &
+xterm
+EOF
+
+
+install Weston
+==============
+pacman -S weston qt5-wayland
+
+
+install mythtv
+==============
+-download mythtv-base package
+pacman -U mythtv-base
+
+
+some basic fixups
+=================
+-change in /etc/hostname to something desirable:
+sed ”s|^.*|Myth-Frontend-020323b304e2|g”-i /etc/hostname
+-creat some users:
+useradd --create-home piotro
+passwd piotro
+passwd mythtv
+-make /var/log world writable:
+sed ”s|^d /var/log 0755|d /var/log 0777|g” -i /usr/lib/tmpfiles.d/var.conf
+-(if required) add BOOT partion mout as /boot (useful for future kernel upgrades)
+echo ”LABEL=BOOT /boot auto defaults 0 1” > /etc/fstab
+sync
+reboot
+
+
+run in EGLFS
+============
+-run mythfrontned:
+mythfrontend.sh eglfs
+
+
+run in EGLFS in DRM mode
+========================
+-run mythfrontned:
+mythfrontend.sh eglfsdrm
+
+
+run in Xorg
+===========
+-start xorg-server by typing in root: 
+startx
+-allow anybody to xorg access by typing:
+xhost +
+-run mythfrontned:
+mythfrontend.sh eglfs
+
+
+run in Wayland
+==============
+-login in TTY as mythtv and start weston:
+weston-launch
+-start weston terminal (top left icon in top bar)
+-run mythfrontned:
+mythfrontend.sh wayland
+ 
+happy watching!
+
+
+Troubleshooting:
+1. if X11 mode not works with Qt XCB message „can’t connect to display..” then probably you forget to run command: xhost +

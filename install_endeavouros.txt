@@ -1,0 +1,20 @@
+Get intall scripts
+==================
+
+git clone https://github.com/endeavouros-arm/install-script.git
+cd install-script
+ls -l
+
+-check mode of endeavour-ARM-install-Vx.y.sh script
+chmod 774 endeavour-ARM-install-Vx.y.sh
+
+
+Install
+=======
+
+-run intaller
+sh endeavour-ARM-install-V1.0.sh
+
+
+more info:
+https://arm.endeavouros.com
