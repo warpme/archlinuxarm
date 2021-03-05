@@ -1,0 +1,12 @@
+diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmyth/mediamonitor-unix.cpp mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmyth/mediamonitor-unix.cpp
+--- mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmyth/mediamonitor-unix.cpp	2020-10-10 16:08:04.383333333 +0200
++++ mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmyth/mediamonitor-unix.cpp	2020-10-10 16:08:06.283333333 +0200
+@@ -198,7 +198,7 @@
+ bool MediaMonitorUnix::CheckMountable(void)
+ {
+ #if CONFIG_QTDBUS
+-    for (int i = 0; i < 10; ++i, usleep(500000))
++    for (int i = 0; i < 3; ++i, usleep(500000))
+     {
+         // Connect to UDisks.  This can sometimes fail if mythfrontend
+         // is started during system init

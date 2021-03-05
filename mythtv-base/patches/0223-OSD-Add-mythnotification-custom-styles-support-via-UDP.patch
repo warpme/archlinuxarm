@@ -1,0 +1,69 @@
+diff -Naur mythtv-master-20210104-gd8376645f6-old/mythtv/libs/libmythui/mythnotificationcenter.cpp mythtv-master-20210104-gd8376645f6-new/mythtv/libs/libmythui/mythnotificationcenter.cpp
+--- mythtv-master-20210104-gd8376645f6-old/mythtv/libs/libmythui/mythnotificationcenter.cpp	2021-01-04 11:53:08.000000000 +0100
++++ mythtv-master-20210104-gd8376645f6-new/mythtv/libs/libmythui/mythnotificationcenter.cpp	2021-01-04 11:56:39.803327000 +0100
+@@ -331,6 +331,9 @@
+         // if not, default to the main one
+         foundtheme = LoadWindowFromXML("notification-ui.xml", theme, this);
+     }
++    if (!m_style.isEmpty())
++        LOG(VB_GENERAL, LOG_NOTICE, QString("Custom notification style request: '%1', will load: '%2'")
++            .arg(m_style).arg(theme_attempt));
+ 
+     if (!foundtheme) // If we cannot load the theme for any reason ...
+         return false;
+@@ -577,6 +580,11 @@
+     {
+         m_extra = tmp;
+     }
++    tmp = data["asst"];
++    if (!(tmp.isNull() && (m_update & kMetaData)))
++    {
++        m_style = tmp;
++    }
+     // We need to re-run init
+     m_refresh = true;
+ }
+@@ -1489,6 +1497,7 @@
+                                                                  "MythTV") : origin;
+     data["asal"] = detail;
+     data["asfm"] = extra;
++    data["asst"] = style;
+ 
+     if (type == MythNotification::Error   ||
+         type == MythNotification::Warning ||
+diff -Naur mythtv-master-20210104-gd8376645f6-old/mythtv/libs/libmythui/mythudplistener.cpp mythtv-master-20210104-gd8376645f6-new/mythtv/libs/libmythui/mythudplistener.cpp
+--- mythtv-master-20210104-gd8376645f6-old/mythtv/libs/libmythui/mythudplistener.cpp	2021-01-04 11:53:08.000000000 +0100
++++ mythtv-master-20210104-gd8376645f6-new/mythtv/libs/libmythui/mythudplistener.cpp	2021-01-06 11:32:10.799999887 +0100
+@@ -101,6 +101,8 @@
+     bool error = false;
+     int visibility = 0;
+     QString type = "normal";
++    QString style = "";
++    MythNotification::Priority priority = MythNotification::kDefault;
+ 
+     auto node = element.firstChild();
+     while (!node.isNull())
+@@ -131,6 +133,8 @@
+                 visibility = dom.text().toInt();
+             else if (tagname == "type")
+                 type = dom.text();
++            else if (notification && tagname == "style")
++                style = dom.text();
+             else if (notification && tagname == "progress")
+             {
+                 bool ok = false;
+@@ -154,12 +158,12 @@
+             timeout = notification ? 5 : 0;
+         if (notification)
+         {
+-            origin = origin.isEmpty() ? tr("UDP Listener") : origin;
++            //origin = origin.isEmpty() ? tr("UDP Listener") : origin;
+             ShowNotification(error ? MythNotification::Error :
+                              MythNotification::TypeFromString(type),
+                              msg, origin, description, image, extra,
+                              progress_text, progress, timeout,
+-                             fullscreen, static_cast<VNMask>(visibility));
++                             fullscreen, static_cast<VNMask>(visibility), priority, style);
+         }
+         else
+         {

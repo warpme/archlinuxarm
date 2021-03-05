@@ -1,0 +1,20 @@
+diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmythtv/mythplayerui.cpp mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmythtv/mythplayerui.cpp
+--- mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmythtv/mythplayerui.cpp	2020-10-10 16:08:20.473333333 +0200
++++ mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmythtv/mythplayerui.cpp	2020-10-10 16:08:22.036666666 +0200
+@@ -625,14 +625,14 @@
+     if (m_decoder)
+         Map["videocodecdesc"] = m_decoder->GetRawEncodingType();
+     Map["videowidth"]     = QString::number(width);
+-    Map["videoheight"]    = QString::number(height);
++    bool interlaced = is_interlaced(GetScanType());
++    Map["videoheight"]    = QString::number(height) + (interlaced ? "i" : "p");
+     Map["videoframerate"] = QString::number(m_videoFrameRate, 'f', 2);
+     Map["deinterlacer"]   = GetDeinterlacerName();
+ 
+     if (width < 640)
+         return;
+ 
+-    bool interlaced = is_interlaced(GetScanType());
+     if (height > 2100)
+         Map["videodescrip"] = interlaced ? "UHD_4K_I" : "UHD_4K_P";
+     else if (width == 1920 || height == 1080 || height == 1088)

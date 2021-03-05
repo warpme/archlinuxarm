@@ -1,0 +1,26 @@
+post_upgrade() {
+	if ! getent passwd mythtv &>/dev/null; then
+		getent group mythtv &>/dev/null || groupadd -r mythtv >/dev/null
+		useradd -rmd /home/mythtv -g mythtv -G video,audio,input,optical -s /bin/bash mythtv >/dev/null
+	fi
+	if ! [ -e /etc/systemd/system/mythbackend.service ]; then
+		echo "Installing mythbackend.service ..."
+		mv -f /etc/systemd/system/mythbackend.service.new /etc/systemd/system/mythbackend.service
+		systemctl --system daemon-reload >/dev/null 2>&1
+	fi
+}
+
+post_install() {
+	echo -e "For installation information, visit:\nhttps://wiki.archlinux.org/index.php/MythTV"
+
+	post_upgrade
+}
+
+post_remove() {
+	echo -e "The MythTV user, usergrup and database were not removed."
+	echo "To remove mythtv user, run:\n userdel mythtv"
+	echo "To remove mythtv usergroup, run:\n groupdel mythtv"
+	echo "To remove database, run:\n  mysql -u root -e 'drop database mythconverg;'"
+	[ -d var/lib/mythtv ] && echo "The MythTV home directory /var/lib/mythtv can also be removed."
+
+}

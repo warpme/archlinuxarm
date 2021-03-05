@@ -1,0 +1,12 @@
+diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/configure mythtv-master-20201010-g68e85b9-new/mythtv/configure
+--- mythtv-master-20201010-g68e85b9-old/mythtv/configure	2020-10-10 16:08:11.369999999 +0200
++++ mythtv-master-20201010-g68e85b9-new/mythtv/configure	2020-10-10 16:08:12.669999999 +0200
+@@ -5203,7 +5203,7 @@
+ }
+ 
+ # Minimum supported Qt version
+-QT_MIN_VERSION_STR="5.9"
++QT_MIN_VERSION_STR="4.8"
+ QT_MIN_VERSION=$(version2num $QT_MIN_VERSION_STR)
+ QT_MIN_VERSION_HEX=$(printf "0x%06x" $QT_MIN_VERSION)
+ 

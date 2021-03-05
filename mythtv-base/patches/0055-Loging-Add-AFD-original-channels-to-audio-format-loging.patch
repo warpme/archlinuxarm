@@ -1,0 +1,17 @@
+diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmythtv/decoders/avformatdecoder.h mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmythtv/decoders/avformatdecoder.h
+--- mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmythtv/decoders/avformatdecoder.h	2020-10-10 16:07:40.746666666 +0200
++++ mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmythtv/decoders/avformatdecoder.h	2020-10-10 16:07:42.269999999 +0200
+@@ -75,10 +75,11 @@
+     }
+     QString toString() const
+     {
+-        return QString("id(%1) %2Hz %3ch %4bps %5 (profile %6)")
++        return QString("id(%1) %2Hz %3/%7ch %4bps %5 (profile %6)")
+             .arg(ff_codec_id_string(m_codecId),4).arg(m_sampleRate,6)
+             .arg(m_channels,2).arg(AudioOutputSettings::FormatToBits(format),2)
+-            .arg((m_doPassthru) ? "pt":"",3).arg(m_codecProfile);
++            .arg((m_doPassthru) ? "pt":"",3).arg(m_codecProfile)
++            .arg(m_originalChannels);
+     }
+ };
+ 

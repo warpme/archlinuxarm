@@ -1,0 +1,213 @@
+pkgname=mythtv-base
+
+#------------------------
+skip_all_patches="no"
+_gitroot=https://github.com/MythTV/mythtv.git
+_gitbranch=master
+_gitrev=be6d476c3698992ed47c6d81f029dae458f64f3f
+pkgrel=1
+#------------------------
+
+
+pkgver=master.20210301.be6d476c
+pkgrel=1
+pkgdesc="A Homebrew PVR project"
+arch=('aarch64')
+url="https://www.mythtv.org/"
+license=('GPL')
+install=mythtv-base.install
+depends=(
+    'exiv2'
+    'fftw'
+    'lame'
+    'libass'
+    'libavc1394'
+    'libbluray'
+    'libcec'
+    'libiec61883'
+    'libpulse'
+    'libsamplerate'
+    'libvpx'
+    'libxinerama'
+    'libxml2'
+    'libxrandr'
+    'perl-dbd-mysql'
+    'perl-io-socket-inet6'
+    'perl-libwww'
+    'perl-xml-simple'
+    'perl-xml-xpath'
+    'python-future'
+    'python-lxml'
+    'python-mysqlclient'
+    'python-requests'
+    'python-simplejson'
+    'python-dateutil'
+    'qt5-script'
+    'qt5-webkit'
+    'taglib'
+    'x264'
+)
+makedepends=(
+    'exiv2'
+    'fftw'
+    'git'
+    'help2man'
+    'lame'
+    'libass'
+    'libavc1394'
+    'libbluray'
+    'libiec61883'
+    'libcdio'
+    'libcec'
+    'libmariadbclient'
+    'libsamplerate'
+    'libvpx'
+    'libxml2'
+    'lirc'
+    'perl-dbd-mysql'
+    'perl-io-socket-inet6'
+    'perl-libwww'
+    'perl-xml-simple'
+    'perl-xml-xpath'
+    'pkg-config'
+    'python-future'
+    'python-lxml'
+    'python-mysqlclient'
+    'python-requests'
+    'python-simplejson'
+    'qt5-script'
+    'qt5-webkit'
+    'taglib'
+    'x264'
+    'yasm'
+)
+optdepends=(
+    'glew: for GPU commercial flagging'
+    'libcec: for consumer electronics control capabilities'
+    'mariadb-clients: Database-Frontend for client deployment'
+)
+conflicts=('mythtv-base-git')
+replaces=('mythtv-base-git')
+source=()
+sha256sums=()
+
+pkgver() {
+
+    cd $srcdir/build
+    echo -n "master.$(git show -s --format=%cd --date=short | tr -d -).$(git rev-parse --short=8 HEAD)"
+
+}
+
+prepare() {
+
+    cd $srcdir
+
+    msg "Connecting to $_gitroot ..."
+
+    if [ -d ${startdir}/${pkgname}.sources ]; then
+
+      cd ${startdir}/${pkgname}.sources
+      git fetch origin
+
+      msg "Sources are updated..."
+
+    else
+
+      git clone $_gitroot -b $_gitbranch ${startdir}/${pkgname}.sources
+
+      msg "Sources are cloned..."
+
+    fi
+
+    cd ${startdir}/${pkgname}.sources
+
+    msg "Checking-out ${_gitrev} ..."
+    git checkout ${_gitrev}
+
+    msg "Making copy for building ..."
+    rm -rf $srcdir/build
+    cp -r  ${startdir}/${pkgname}.sources $srcdir/build
+
+    msg "Applying patchs ..."
+    cd $srcdir/build
+
+    if [ x$skip_all_patches != "xyes" ]; then
+
+        msg "------Patching sources-------"
+
+        if [ -d ${startdir}/patches ] ; then
+
+            for i in `ls -1 ${startdir}/patches/*.patch 2>/dev/null`
+            do
+
+                echo "==>Applying $i"
+                patch -Np1  -i $i  || return 1
+                echo " "
+
+            done
+
+            msg "All patchs applied sucessfuly !"
+            echo " "
+        fi
+
+        if [ -d ${startdir}/reverts ] ; then
+
+            msg "------Reverting commits-------"
+
+            for i in `ls -1 ${startdir}/reverts/*.patch 2>/dev/null`
+            do
+
+                echo "==>Reverting $i"
+                patch -p1 -R -i $i  || return 1
+                echo " "
+
+            done
+
+            msg "All commits reverted sucessfuly !"
+            echo " "
+        fi
+
+    fi
+
+}
+
+build() {
+
+    cd $srcdir/build/mythtv
+
+    ARCH="${CARCH/_/-}"
+
+    ./configure \
+      --prefix=/usr \
+      --disable-vaapi \
+      --disable-vdpau \
+      --disable-nvdec \
+      --enable-lirc \
+      --enable-x11 \
+      --enable-libx264 \
+      --enable-nonfree \
+      --compile-type=release \
+      --enable-v4l2 \
+      --enable-v4l2request \
+
+    make || return 1
+}
+
+package() {
+
+    cd $srcdir/build/mythtv
+
+    make INSTALL_ROOT="${pkgdir}" install || return 1
+
+    install -d ${pkgdir}/usr/share/mythtv
+    cp -af contrib ${pkgdir}/usr/share/mythtv/
+
+    cd $startdir
+    install -D -m0644 mc.sql ${pkgdir}/usr/share/mythtv
+    install -D -m0644 gdb.commands ${pkgdir}/usr/share/mythtv
+    install -D -m0644 mythbackend.service ${pkgdir}/etc/systemd/system/mythbackend.service.new
+    install -D -m0755 mythbackend.sh ${pkgdir}/usr/bin/mythbackend.sh
+    install -D -m0755 mythfrontend.sh ${pkgdir}/usr/bin/mythfrontend.sh
+
+}
+

@@ -1,0 +1,99 @@
+diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmythtv/tv_play.cpp mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmythtv/tv_play.cpp
+--- mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmythtv/tv_play.cpp	2020-10-10 16:07:51.136666666 +0200
++++ mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmythtv/tv_play.cpp	2020-10-10 16:07:52.833333333 +0200
+@@ -526,7 +526,7 @@
+ void TV::InitKeys()
+ {
+     REG_KEY("TV Frontend", ACTION_PLAYBACK, QT_TRANSLATE_NOOP("MythControls",
+-            "Play Program"), "P");
++            "Play Program"), "Ctrl+P");
+     REG_KEY("TV Frontend", ACTION_STOP, QT_TRANSLATE_NOOP("MythControls",
+             "Stop Program"), "");
+     REG_KEY("TV Frontend", ACTION_TOGGLERECORD, QT_TRANSLATE_NOOP("MythControls",
+@@ -954,7 +954,7 @@
+ 
+     /* OSD playback information screen */
+     REG_KEY("TV Playback", ACTION_TOGGLEOSDDEBUG,
+-            QT_TRANSLATE_NOOP("MythControls", "Toggle OSD playback information"), "");
++            QT_TRANSLATE_NOOP("MythControls", "Toggle OSD playback information"), "Ctrl+I");
+ 
+     /* 3D/Frame compatible/Stereoscopic TV */
+     REG_KEY("TV Playback", ACTION_3DNONE,
+diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmythui/mythmainwindow.cpp mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmythui/mythmainwindow.cpp
+--- mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmythui/mythmainwindow.cpp	2020-10-10 16:07:51.126666666 +0200
++++ mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmythui/mythmainwindow.cpp	2020-10-10 16:07:52.836666666 +0200
+@@ -952,9 +952,9 @@
+         "Go forward to previous page"),     "F");
+ 
+     RegisterKey("Main Menu",    "EXITPROMPT", QT_TRANSLATE_NOOP("MythControls",
+-        "Display System Exit Prompt"),      "Esc");
++        "Display System Exit Prompt"),      "");
+     RegisterKey("Main Menu",    "EXIT",       QT_TRANSLATE_NOOP("MythControls",
+-        "System Exit"),                     "");
++        "System Exit"),                     "Ctrl+Esc");
+     RegisterKey("Main Menu",    "STANDBYMODE",QT_TRANSLATE_NOOP("MythControls",
+         "Enter Standby Mode"),              "");
+     RegisterKey("Long Press",    "LONGPRESS1",QT_TRANSLATE_NOOP("MythControls",
+diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/programs/mythfrontend/globalsettings.cpp mythtv-master-20201010-g68e85b9-new/mythtv/programs/mythfrontend/globalsettings.cpp
+--- mythtv-master-20201010-g68e85b9-old/mythtv/programs/mythfrontend/globalsettings.cpp	2020-10-10 16:07:51.116666666 +0200
++++ mythtv-master-20201010-g68e85b9-new/mythtv/programs/mythfrontend/globalsettings.cpp	2020-10-10 16:07:52.836666666 +0200
+@@ -1681,7 +1681,7 @@
+ 
+     gc->setLabel(OSDSettings::tr("Browse all channels"));
+ 
+-    gc->setValue(false);
++    gc->setValue(true);
+ 
+     gc->setHelpText(OSDSettings::tr("If enabled, browse mode will show "
+                                     "channels on all available recording "
+@@ -1753,7 +1753,7 @@
+ 
+     gc->setLabel(PlaybackSettings::tr("Prompt at end of recording"));
+ 
+-    gc->setValue(false);
++    gc->setValue(true);
+ 
+     gc->setHelpText(PlaybackSettings::tr("If enabled, a menu will be displayed "
+                                          "allowing you to delete the recording "
+@@ -2048,7 +2048,7 @@
+ 
+     ge->setLabel(MainGeneralSettings::tr("Screen shot path"));
+ 
+-    ge->setValue("/tmp/");
++    ge->setValue("/mnt/temp/");
+ 
+     ge->setHelpText(MainGeneralSettings::tr("Path to screenshot storage "
+                                             "location. Should be writable "
+@@ -3171,7 +3171,7 @@
+                                             "controlling MythFrontend "
+                                             "over the network."));
+ 
+-    gc->setValue(false);
++    gc->setValue(true);
+ 
+     return gc;
+ }
+diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/programs/mythfrontend/main.cpp mythtv-master-20201010-g68e85b9-new/mythtv/programs/mythfrontend/main.cpp
+--- mythtv-master-20201010-g68e85b9-old/mythtv/programs/mythfrontend/main.cpp	2020-10-10 16:07:51.119999999 +0200
++++ mythtv-master-20201010-g68e85b9-new/mythtv/programs/mythfrontend/main.cpp	2020-10-10 16:07:52.836666666 +0200
+@@ -1603,7 +1603,7 @@
+ 
+      // Gallery keybindings
+      REG_KEY("Images", "PLAY", QT_TRANSLATE_NOOP("MythControls",
+-         "Start/Stop Slideshow"), "P");
++         "Start/Stop Slideshow"), "Ctrl+P");
+      REG_KEY("Images", "RECURSIVESHOW", QT_TRANSLATE_NOOP("MythControls",
+          "Start Recursive Slideshow"), "R");
+      REG_KEY("Images", "ROTRIGHT", QT_TRANSLATE_NOOP("MythControls",
+diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/programs/mythfrontend/videoplayersettings.cpp mythtv-master-20201010-g68e85b9-new/mythtv/programs/mythfrontend/videoplayersettings.cpp
+--- mythtv-master-20201010-g68e85b9-old/mythtv/programs/mythfrontend/videoplayersettings.cpp	2020-10-10 16:07:51.116666666 +0200
++++ mythtv-master-20201010-g68e85b9-new/mythtv/programs/mythfrontend/videoplayersettings.cpp	2020-10-10 16:07:52.836666666 +0200
+@@ -55,7 +55,7 @@
+     m_dvdDriveEdit->SetText(gCoreContext->GetSetting("DVDDeviceLocation",
+                            "default"));
+     m_blurayMountEdit->SetText(gCoreContext->GetSetting("BluRayMountpoint",
+-                           "/media/cdrom"));
++                           "/media/disk"));
+     m_altPlayerEdit->SetText(gCoreContext->GetSetting(
+                            "mythvideo.VideoAlternatePlayer", "Internal"));
+ 

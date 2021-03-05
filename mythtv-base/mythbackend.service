@@ -1,0 +1,93 @@
+[Unit]
+Description=MythtTV Backend Server
+After=syslog.target network.target mysqld.service sasc-ng.service
+Requires=sasc-ng.service
+OnFailure=crash-analyzer.service
+
+[Service]
+ExecStart=/usr/bin/mythbackend --systemd-journal --quiet
+# ExecStart=/usr/bin/mythbackend --verbose channel --loglevel debug --logpath /tmp/
+
+LimitCORE=infinity
+User=mythtv
+Group=mythtv
+Restart=always
+StandardOutput=syslog
+Nice=-4
+TimeoutSec=30
+RestartSec=5
+OOMScoreAdjust=-1000
+
+[Install]
+WantedBy=multi-user.target
+
+
+# Misc. Options:
+# -d OR --daemon              Fork application into background after startup.
+# --noupnp                    Disable use of UPnP.
+# -O OR --override-setting    Override a single setting defined by a key=value pair.
+# --override-settings-file    Define a file of key=value pairs to be loaded for setting overrides.
+# -p OR --pidfile             Write PID of application to filename.
+# --printexpire               Print upcoming list of recordings to be expired.
+# --printsched                Print upcoming list of scheduled recordings.
+# --setloglevel               Change logging level of the existing master backend.
+# --setverbose                Change debug mask of the existing master backend.
+# -h OR --help OR --usage     Display this help printout, or give detailed information of selected option.
+# --version                   Display version information.
+# --testsched                 do some scheduler testing.
+# --user                      Drop permissions to username after starting.
+#
+# Logging Options:
+# --enable-dblog              Enable logging to database.
+# --loglevel                  Set the logging level.  All log messages at lower levels will be discarded.
+#                             In descending order: emerg, alert, crit, err, warning, notice, info, debug                                                        defaults to info
+# --logpath                   Writes logging messages to a file in the directory logpath with filenames in the format: applicationName.date.pid.log.
+#                             This is typically used in combination with --daemon, and if used in combination with --pidfile, this can be used with log rotators,
+#                             using the HUP call to inform MythTV to reload the file
+# -q OR --quiet               Don't log to the console (-q).  Don't log anywhere (-q -q)
+# --syslog                    Set the syslog logging facility.
+#                             Set to "none" to disable, defaults to none.
+#            Use systemd-journal instead of syslog.
+# -v OR --verbose             Specify log filtering. Use '-v help' for level info.
+
+
+# Verbose debug levels:
+# all             - ALL available debug output
+# audio           - Audio related messages
+# channel         - Channel related messages
+# chanscan        - Channel Scanning messages
+# commflag        - Commercial detection related messages
+# database        - Display all SQL commands executed
+# decode          - MPEG2Fix Decode messages
+# dsmcc           - DSMCC carousel related messages
+# dvbcam          - DVB CAM debugging messages
+# eit             - EIT related messages
+# file            - File and AutoExpire related messages
+# frame           - MPEG2Fix frame messages
+# general         - General info
+# gpu             - GPU Commercial Flagging messages
+# gpuaudio        - GPU Audio Processing messages
+# gpuvideo        - GPU Video Processing messages
+# gui             - GUI related messages
+# idle            - System idle messages
+# jobqueue        - JobQueue related messages
+# libav           - Enables libav debugging
+# media           - Media Manager debugging messages
+# mheg            - MHEG debugging messages
+# most            - Most debug (nodatabase,notimestamp,noextra)
+# network         - Network protocol related messages
+# none            - NO debug output
+# osd             - On-Screen Display related messages
+# playback        - Playback related messages
+# process         - MPEG2Fix processing messages
+# record          - Recording related messages
+# refcount        - Reference Count messages
+# rplxqueue       - MPEG2Fix Replex Queue messages
+# schedule        - Scheduling related messages
+# siparser        - Siparser related messages
+# socket          - socket debugging messages
+# system          - External executable related messages
+# timestamp       - Conditional data driven messages
+# upnp            - UPnP debugging messages
+# vbi             - VBI related messages
+# xmltv           - xmltv output and related messages

@@ -1,0 +1,18 @@
+diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmythui/mythuiscreenbounds.cpp mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmythui/mythuiscreenbounds.cpp
+--- mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmythui/mythuiscreenbounds.cpp	2020-10-10 16:07:26.980000000 +0200
++++ mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmythui/mythuiscreenbounds.cpp	2020-10-10 16:07:29.229999999 +0200
+@@ -214,12 +214,12 @@
+ 
+ int MythUIScreenBounds::NormX(int X) const
+ {
+-    return qRound(X * m_screenHorizScale);
++    return (int)(X * m_screenHorizScale);
+ }
+ 
+ int MythUIScreenBounds::NormY(int Y) const
+ {
+-    return qRound(Y * m_screenVertScale);
++    return (int)(Y * m_screenVertScale);
+ }
+ 
+ void MythUIScreenBounds::GetScalingFactors(float& Horizontal, float& Vertical) const

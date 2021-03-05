@@ -1,0 +1,14 @@
+diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmyth/mythmediamonitor.cpp mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmyth/mythmediamonitor.cpp
+--- mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmyth/mythmediamonitor.cpp	2020-10-10 16:08:07.066666666 +0200
++++ mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmyth/mythmediamonitor.cpp	2020-10-10 16:08:08.969999999 +0200
+@@ -464,10 +464,6 @@
+     // Sanity check
+     if (m_active)
+         return;
+-    if (!gCoreContext->GetBoolSetting("MonitorDrives", false)) {
+-        LOG(VB_MEDIA, LOG_NOTICE, "MediaMonitor disabled by user setting.");
+-        return;
+-    }
+ 
+     if (!m_thread)
+         m_thread = new MonitorThread(this, m_monitorPollingInterval);

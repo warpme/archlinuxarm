@@ -1,0 +1,12 @@
+diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/external/libudfread/udfread.c mythtv-master-20201010-g68e85b9-new/mythtv/external/libudfread/udfread.c
+--- mythtv-master-20201010-g68e85b9-old/mythtv/external/libudfread/udfread.c	2020-10-10 16:08:12.483333333 +0200
++++ mythtv-master-20201010-g68e85b9-new/mythtv/external/libudfread/udfread.c	2020-10-10 16:08:13.833333333 +0200
+@@ -87,7 +87,7 @@
+     return result;
+ }
+ 
+-#elif defined(HAVE_PTHREAD_H)
++#elif defined(HAVE_PTHREADS)
+ 
+ #include <pthread.h>
+ 
