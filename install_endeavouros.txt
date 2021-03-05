@@ -1,4 +1,22 @@
-Get intall scripts
+
+Resize root partition
+=====================
+1. take a note of a starting sector of a partition to resize (usually /dev/mmcblk0p2. examplary value: 374784)
+2. Start fdisk in /dev/<disk> (usually /dev/mmcblk0)
+3. Remove the partition and recreate a new, larger partition starting from sector 374784. and with desired new size
+4. write new prtitions in fdisk. exit fdisk
+5. resize filesystem to new part.size by resize2fs /dev/<part>
+6. reboot
+
+
+Run full system update
+======================
+pacman -Sy
+pacman -Su
+reboot
+
+
+Get EndeavourOS intall scripts
 ==================
 
 git clone https://github.com/endeavouros-arm/install-script.git
@@ -9,11 +27,11 @@ ls -l
 chmod 774 endeavour-ARM-install-Vx.y.sh
 
 
-Install
-=======
+Install EndeavourOS
+===================
 
 -run intaller
-sh endeavour-ARM-install-V1.0.sh
+sh endeavour-ARM-install-Vx.y.sh
 
 
 more info:

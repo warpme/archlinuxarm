@@ -26,15 +26,10 @@ pacman -S mc htop wget sudo git
 enable remote ssh login (if needed)
 ===================================
 -uncomment ListenAddress 0.0.0.0
--change to „PermitRootLogin yes”
--change to „PubkeyAuthentication yes”
--change PasswordAutentication yes”
--change to „X11Forwarding yes”
-sed ”s|^#ListenAddress 0\.0\.0\.0.*|ListenAddress 0.0.0.0|g” -i /etc/ssh/sshd_config 
-sed ”s|^#PermitRootLogin.*|PermitRootLogin yes|g” -i /etc/ssh/sshd_config
-sed ”s|^#PubkeyAuthentication.*|PubkeyAuthentication yes|g” -i /etc/ssh/sshd_config
-sed ”s|^#PasswordAutentication.*|PasswordAutentication yes|g” -i /etc/ssh/sshd_config
-sed ”s|^#X11Forwarding.*|X11Forwarding yes”|g -i /etc/ssh/sshd_config
+-change to "PermitRootLogin yes”
+-change to "PubkeyAuthentication yes”
+-change to "PasswordAutentication yes”
+-change to "X11Forwarding yes”
 systemctl enable sshd
 
 
@@ -121,4 +116,6 @@ happy watching!
 
 
 Troubleshooting:
-1. if X11 mode not works with Qt XCB message „can’t connect to display..” then probably you forget to run command: xhost +
+1. if starting mythtv in X11 mode not works with Qt XCB message „can’t connect to display..” 
+then probably you forget to run command: xhost +
+
