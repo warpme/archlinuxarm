@@ -1,0 +1,33 @@
+
+
+Resize root partition
+=====================
+1. take a note of a starting sector of a partition to resize (usually /dev/mmcblk0p2. examplary value: 374784)
+2. Start fdisk in /dev/<disk> (usually /dev/mmcblk0)
+3. Remove the partition and recreate a new, larger partition starting from sector 374784. and with desired new size
+4. write new prtitions in fdisk. exit fdisk
+5. resize filesystem to new part.size by resize2fs /dev/<part>
+6. reboot
+
+
+Run full system update
+======================
+pacman -Sy
+pacman -Su
+reboot
+
+
+Install basic build packages
+============================
+pacman -S base-devel mc sudo fakeroot binutils tmux patch wget rsync unzip
+
+
+Build mythtv
+============
+-adjust parallel make jobs in /etc/makepkg.conf
+-clone package sources
+-cd mythtv-base nd run:
+makepkg --skipinted
+
+happy building!
+
