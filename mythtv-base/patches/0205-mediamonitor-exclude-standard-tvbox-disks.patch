@@ -1,6 +1,6 @@
-diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmyth/mythmediamonitor.cpp mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmyth/mythmediamonitor.cpp
---- mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmyth/mythmediamonitor.cpp	2020-10-10 16:08:10.123333333 +0200
-+++ mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmyth/mythmediamonitor.cpp	2020-10-10 16:08:11.530000000 +0200
+diff -Naur mythtv-master-20210518-gc8c226c9b4-old/mythtv/libs/libmyth/mythmediamonitor.cpp mythtv-master-20210518-gc8c226c9b4-new/mythtv/libs/libmyth/mythmediamonitor.cpp
+--- mythtv-master-20210518-gc8c226c9b4-old/mythtv/libs/libmyth/mythmediamonitor.cpp	2021-05-18 16:12:49.586666603 +0200
++++ mythtv-master-20210518-gc8c226c9b4-new/mythtv/libs/libmyth/mythmediamonitor.cpp	2021-05-18 16:12:51.773333270 +0200
 @@ -347,6 +347,46 @@
  {
      // User can specify that some devices are not monitored
@@ -48,9 +48,9 @@ diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmyth/mythmediamoni
  
      if (!ignore.isEmpty())
      {
-@@ -359,8 +399,8 @@
-     else
-         m_ignoreList = QStringList();  // Force empty list
+@@ -357,8 +397,8 @@
+ #endif
+     }
  
 -    LOG(VB_MEDIA, LOG_NOTICE, "Creating MediaMonitor");
 -    LOG(VB_MEDIA, LOG_INFO, "IgnoreDevices=" + ignore);
@@ -58,4 +58,4 @@ diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmyth/mythmediamoni
 +    LOG(VB_GENERAL, LOG_INFO, "IgnoreDevices=" + ignore);
  
      // If any of IgnoreDevices are symlinks, also add the real device
-     QStringList::Iterator dev;
+     QStringList symlinked;

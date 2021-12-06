@@ -1,7 +1,7 @@
-diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmythtv/decoders/avformatdecoder.h mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmythtv/decoders/avformatdecoder.h
---- mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmythtv/decoders/avformatdecoder.h	2020-10-10 16:07:40.746666666 +0200
-+++ mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmythtv/decoders/avformatdecoder.h	2020-10-10 16:07:42.269999999 +0200
-@@ -75,10 +75,11 @@
+diff -Naur mythtv-master-20210518-gc8c226c9b4-old/mythtv/libs/libmythtv/decoders/avformatdecoder.h mythtv-master-20210518-gc8c226c9b4-new/mythtv/libs/libmythtv/decoders/avformatdecoder.h
+--- mythtv-master-20210518-gc8c226c9b4-old/mythtv/libs/libmythtv/decoders/avformatdecoder.h	2021-05-18 16:11:36.353333272 +0200
++++ mythtv-master-20210518-gc8c226c9b4-new/mythtv/libs/libmythtv/decoders/avformatdecoder.h	2021-05-18 16:11:38.986666605 +0200
+@@ -74,10 +74,11 @@
      }
      QString toString() const
      {

@@ -1,7 +1,7 @@
-diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmyth/mythmediamonitor.cpp mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmyth/mythmediamonitor.cpp
---- mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmyth/mythmediamonitor.cpp	2020-10-10 16:08:07.066666666 +0200
-+++ mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmyth/mythmediamonitor.cpp	2020-10-10 16:08:08.969999999 +0200
-@@ -464,10 +464,6 @@
+diff -Naur mythtv-master-20210518-gc8c226c9b4-old/mythtv/libs/libmyth/mythmediamonitor.cpp mythtv-master-20210518-gc8c226c9b4-new/mythtv/libs/libmyth/mythmediamonitor.cpp
+--- mythtv-master-20210518-gc8c226c9b4-old/mythtv/libs/libmyth/mythmediamonitor.cpp	2021-05-18 16:12:44.253333271 +0200
++++ mythtv-master-20210518-gc8c226c9b4-new/mythtv/libs/libmyth/mythmediamonitor.cpp	2021-05-18 16:12:47.373333270 +0200
+@@ -458,10 +458,6 @@
      // Sanity check
      if (m_active)
          return;

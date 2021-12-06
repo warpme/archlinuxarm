@@ -1,7 +1,7 @@
-diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmythtv/osd.cpp mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmythtv/osd.cpp
---- mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmythtv/osd.cpp	2020-10-10 16:08:15.816666666 +0200
-+++ mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmythtv/osd.cpp	2020-10-10 16:08:17.353333333 +0200
-@@ -525,7 +525,7 @@
+diff -Naur mythtv-master-20210518-gc8c226c9b4-old/mythtv/libs/libmythtv/osd.cpp mythtv-master-20210518-gc8c226c9b4-new/mythtv/libs/libmythtv/osd.cpp
+--- mythtv-master-20210518-gc8c226c9b4-old/mythtv/libs/libmythtv/osd.cpp	2021-05-18 16:13:02.366666603 +0200
++++ mythtv-master-20210518-gc8c226c9b4-new/mythtv/libs/libmythtv/osd.cpp	2021-05-18 16:13:05.303333270 +0200
+@@ -350,7 +350,7 @@
              else
                  bar->SetUsed(0);
          }

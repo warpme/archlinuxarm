@@ -1,6 +1,6 @@
-diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmyth/audio/audiooutputalsa.cpp mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmyth/audio/audiooutputalsa.cpp
---- mythtv-master-20201010-g68e85b9-old/mythtv/libs/libmyth/audio/audiooutputalsa.cpp	2020-10-10 16:07:55.033333333 +0200
-+++ mythtv-master-20201010-g68e85b9-new/mythtv/libs/libmyth/audio/audiooutputalsa.cpp	2020-10-10 16:07:57.020000000 +0200
+diff -Naur mythtv-master-20210518-gc8c226c9b4-old/mythtv/libs/libmyth/audio/audiooutputalsa.cpp mythtv-master-20210518-gc8c226c9b4-new/mythtv/libs/libmyth/audio/audiooutputalsa.cpp
+--- mythtv-master-20210518-gc8c226c9b4-old/mythtv/libs/libmyth/audio/audiooutputalsa.cpp	2021-05-18 16:12:04.443333272 +0200
++++ mythtv-master-20210518-gc8c226c9b4-new/mythtv/libs/libmyth/audio/audiooutputalsa.cpp	2021-05-18 16:12:07.099999938 +0200
 @@ -368,9 +368,8 @@
          {
              case FORMAT_U8:     afmt = SND_PCM_FORMAT_U8;    break;

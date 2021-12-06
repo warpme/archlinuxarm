@@ -1,6 +1,6 @@
-diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/bindings/perl/Makefile mythtv-master-20201010-g68e85b9-new/mythtv/bindings/perl/Makefile
---- mythtv-master-20201010-g68e85b9-old/mythtv/bindings/perl/Makefile	2020-10-10 16:07:52.496666666 +0200
-+++ mythtv-master-20201010-g68e85b9-new/mythtv/bindings/perl/Makefile	2020-10-10 16:07:54.259999999 +0200
+diff -Naur mythtv-master-20210518-gc8c226c9b4-old/mythtv/bindings/perl/Makefile mythtv-master-20210518-gc8c226c9b4-new/mythtv/bindings/perl/Makefile
+--- mythtv-master-20210518-gc8c226c9b4-old/mythtv/bindings/perl/Makefile	2021-05-18 16:11:59.366666605 +0200
++++ mythtv-master-20210518-gc8c226c9b4-new/mythtv/bindings/perl/Makefile	2021-05-18 16:12:02.526666605 +0200
 @@ -6,7 +6,7 @@
  
  ifneq ($(PREFIX:/=), /usr)
@@ -10,9 +10,9 @@ diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/bindings/perl/Makefile myt
  	endif
  endif
  
-diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/bindings/python/Makefile mythtv-master-20201010-g68e85b9-new/mythtv/bindings/python/Makefile
---- mythtv-master-20201010-g68e85b9-old/mythtv/bindings/python/Makefile	2020-10-10 16:07:52.496666666 +0200
-+++ mythtv-master-20201010-g68e85b9-new/mythtv/bindings/python/Makefile	2020-10-10 16:07:54.259999999 +0200
+diff -Naur mythtv-master-20210518-gc8c226c9b4-old/mythtv/bindings/python/Makefile mythtv-master-20210518-gc8c226c9b4-new/mythtv/bindings/python/Makefile
+--- mythtv-master-20210518-gc8c226c9b4-old/mythtv/bindings/python/Makefile	2021-05-18 16:11:59.363333272 +0200
++++ mythtv-master-20210518-gc8c226c9b4-new/mythtv/bindings/python/Makefile	2021-05-18 16:12:02.533333272 +0200
 @@ -19,7 +19,7 @@
  distclean: clean
  
@@ -22,3 +22,15 @@ diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/bindings/python/Makefile m
  
  install: setup.py
  	$(PYTHON) setup.py install --skip-build $(ROOT_FLAGS) $(PREFIX_FLAGS)
+diff -Naur mythtv-master-20210518-gc8c226c9b4-old/mythtv/programs/scripts/python_pathfix.py mythtv-master-20210518-gc8c226c9b4-new/mythtv/programs/scripts/python_pathfix.py
+--- mythtv-master-20210518-gc8c226c9b4-old/mythtv/programs/scripts/python_pathfix.py	2021-05-18 16:11:59.233333272 +0200
++++ mythtv-master-20210518-gc8c226c9b4-new/mythtv/programs/scripts/python_pathfix.py	2021-05-18 16:12:02.533333272 +0200
+@@ -12,7 +12,7 @@
+ def main():
+ 
+     # Pick up default interpreter (ours)
+-    python_interpreter = os.path.normcase(sys.executable).encode()
++    python_interpreter = os.path.normcase('/usr/bin/python').encode()
+ 
+     # Don't bother reporting
+     verbose = False

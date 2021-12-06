@@ -1,12 +1,12 @@
-diff -Naur mythtv-master-20201010-g68e85b9-old/mythtv/configure mythtv-master-20201010-g68e85b9-new/mythtv/configure
---- mythtv-master-20201010-g68e85b9-old/mythtv/configure	2020-10-10 16:08:11.369999999 +0200
-+++ mythtv-master-20201010-g68e85b9-new/mythtv/configure	2020-10-10 16:08:12.669999999 +0200
-@@ -5203,7 +5203,7 @@
+diff -Naur mythtv-master-20210518-gc8c226c9b4-old/mythtv/configure mythtv-master-20210518-gc8c226c9b4-new/mythtv/configure
+--- mythtv-master-20210518-gc8c226c9b4-old/mythtv/configure	2021-05-18 16:12:50.753333270 +0200
++++ mythtv-master-20210518-gc8c226c9b4-new/mythtv/configure	2021-05-18 16:12:53.983333270 +0200
+@@ -5219,7 +5219,7 @@
  }
  
  # Minimum supported Qt version
--QT_MIN_VERSION_STR="5.9"
-+QT_MIN_VERSION_STR="4.8"
- QT_MIN_VERSION=$(version2num $QT_MIN_VERSION_STR)
- QT_MIN_VERSION_HEX=$(printf "0x%06x" $QT_MIN_VERSION)
+-QT5_MIN_VERSION_STR="5.9"
++QT5_MIN_VERSION_STR="4.8"
+ QT6_MIN_VERSION_STR="6.0"
  
+ # qmake-qt5 /usr/lib64/qt5/bin/qmake /usr/lib/x86_64-linux-gnu/qt5/bin/qmake

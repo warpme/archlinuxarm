@@ -4,12 +4,13 @@ pkgname=mythtv-base
 skip_all_patches="no"
 _gitroot=https://github.com/MythTV/mythtv.git
 _gitbranch=master
-_gitrev=be6d476c3698992ed47c6d81f029dae458f64f3f
+# 4.12.2021
+_gitrev=976296fc365f552d1f95cc4c14b7c1ecf6756b2a
 pkgrel=1
 #------------------------
 
 
-pkgver=master.20210301.be6d476c
+pkgver=master.20211204.976296fc
 pkgrel=1
 pkgdesc="A Homebrew PVR project"
 arch=('aarch64')
@@ -27,9 +28,11 @@ depends=(
     'libiec61883'
     'libpulse'
     'libsamplerate'
+    'soundtouch'
     'libvpx'
     'libxinerama'
     'libxml2'
+    'libzip'
     'libxrandr'
     'perl-dbd-mysql'
     'perl-io-socket-inet6'
@@ -61,8 +64,10 @@ makedepends=(
     'libcec'
     'libmariadbclient'
     'libsamplerate'
+    'soundtouch'
     'libvpx'
     'libxml2'
+    'libzip'
     'lirc'
     'perl-dbd-mysql'
     'perl-io-socket-inet6'
@@ -71,6 +76,7 @@ makedepends=(
     'perl-xml-xpath'
     'pkg-config'
     'python-future'
+    'python-setuptools'
     'python-lxml'
     'python-mysqlclient'
     'python-requests'
