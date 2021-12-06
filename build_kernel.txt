@@ -1,0 +1,35 @@
+
+
+Resize root partition
+=====================
+if required: resize root partition
+1. take a note of a starting sector of a partition to resize (on SD image on my Git it is 374784)
+2. start fdisk on mmc card device /dev/<disk> (usually /dev/mmcblk0)
+3. remove the partition and recreate a new, larger partition primary starting from sector 374784. and with desired new size
+4. write new prtitions in fdisk with keeping partition signature. exit fdisk
+5. resize filesystem to new part.size by resize2fs /dev/<part> (usually /dev/mmcblk0p2)
+6. reboot
+
+
+Run full system update
+======================
+pacman -Sy
+pacman -Su
+reboot
+
+
+Install basic build packages
+============================
+pacman -S base-devel mc sudo fakeroot binutils tmux patch wget git rsync unzip xmlto docbook-xsl inetutils bc uboot-tools dtc
+
+
+Build mythtv
+============
+-adjust parallel make jobs in /etc/makepkg.conf
+-clone package sources
+-cd linux and update MAKEPKG & patches
+-build:
+makepkg --skipinted
+
+happy building!
+
