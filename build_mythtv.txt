@@ -2,11 +2,12 @@
 
 Resize root partition
 =====================
-1. take a note of a starting sector of a partition to resize (usually /dev/mmcblk0p2. examplary value: 374784)
-2. Start fdisk in /dev/<disk> (usually /dev/mmcblk0)
-3. Remove the partition and recreate a new, larger partition starting from sector 374784. and with desired new size
-4. write new prtitions in fdisk. exit fdisk
-5. resize filesystem to new part.size by resize2fs /dev/<part>
+if required: resize root partition
+1. take a note of a starting sector of a partition to resize (on SD image on my Git it is 374784)
+2. start fdisk on mmc card device /dev/<disk> (usually /dev/mmcblk0)
+3. remove the partition and recreate a new, larger partition primary starting from sector 374784. and with desired new size
+4. write new prtitions in fdisk with keeping partition signature. exit fdisk
+5. resize filesystem to new part.size by resize2fs /dev/<part> (usually /dev/mmcblk0p2)
 6. reboot
 
 
@@ -19,7 +20,12 @@ reboot
 
 Install basic build packages
 ============================
-pacman -S base-devel mc sudo fakeroot binutils tmux patch wget rsync unzip
+pacman -S base-devel mc sudo fakeroot binutils tmux patch wget rsync unzip git
+
+
+Install MythTV build dependencies
+============================
+pacman -S exiv2 fftw git help2man lame libass libavc1394 libbluray libiec61883 libcdio libcec libmariadbclient libsamplerate soundtouch libvpx libzip lirc perl-dbd-mysql perl-io-socket-inet6 perl-libwww perl-xml-simple perl-xml-xpath pkg-config python-setuptools python-future python-lxml python-mysqlclient python-requests python-simplejson qt5-script qt5-webkit taglib x264 yasm libpulse libxinerama python-dateutil
 
 
 Build mythtv

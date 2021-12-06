@@ -2,11 +2,11 @@ myth archlinuxarm
 =================
 
 if required: resize root partition
-1. take a note of a starting sector of a partition to resize (examplary  374784)
-2. Start fdisk in /dev/<disk>
-3. Remove the partition and recreate a new, larger partition starting from sector 374784. and with desired new size
-4. write new prtitions in fdisk. exit fdisk
-5. resize filesystem to new part.size by resize2fs /dev/<part>
+1. take a note of a starting sector of a partition to resize (on SD image on my Git it is 374784)
+2. start fdisk on mmc card device /dev/<disk> (usually /dev/mmcblk0)
+3. remove the partition and recreate a new, larger partition primary starting from sector 374784. and with desired new size
+4. write new prtitions in fdisk with keeping partition signature. exit fdisk
+5. resize filesystem to new part.size by resize2fs /dev/<part> (usually /dev/mmcblk0p2)
 6. reboot
 
 
