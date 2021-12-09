@@ -14,8 +14,8 @@ Getting easy running MythTV/EndeavourOS on some ARM boxes
 Pls look in https://github.com/warpme/archlinuxarm/releases
 You will find there:
 
-### ArchLinux-TanixTX6.img
-Ready to run ArchLinux ARM SD card image for Tanix-Tx6 TVbox.
+### ArchLinux-*.img.xz
+Ready to run ArchLinux ARM SD card image for Tanix-Tx6 TVbox & RPI4 SBC.
 You can burn this to SD card, insert to TVbox and you should have running Archlinux.
 After resizing root partition you can install i.e. EdneavourOS.
 See instructions in https://github.com/warpme/archlinuxarm/blob/master/install_endeavouros.txt
