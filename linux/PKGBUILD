@@ -2,10 +2,10 @@
 # skip_all_patches=yes
 
 pkgbase=linux-aarch64
-_srcname=linux-5.15
+_srcname=linux-5.19
 _kernelname=${pkgbase#linux}
 _desc="AArch64 multi-platform"
-pkgver=5.15.6
+pkgver=5.19.9
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -29,13 +29,13 @@ prepare() {
   git apply --whitespace=nowarn ../patch-${pkgver}
 
   if [ x$skip_all_patches != "xyes" ]; then
+    pwd
     msg "------Patching sources-------"
-    mkdir -p ../tmp
     if [ -d ${startdir}/patches ] ; then
       for i in `ls -1 ${startdir}/patches/*.patch 2>/dev/null`
         do
           echo "==>Applying $i"
-          patch -Np3  -i $i  || return 1
+          patch -Np1  -i $i  || return 1
           echo " "
         done
         msg "All patchs applied sucessfuly !"
@@ -230,7 +230,16 @@ _package-headers() {
   ln -sr "$builddir" "$pkgdir/usr/src/$pkgbase"
 }
 
-pkgname=("${pkgbase}" "${pkgbase}-headers" "${pkgbase}-chromebook")
+_package-api-headers() {
+  cd ${_srcname}
+
+  make INSTALL_HDR_PATH="$pkgdir/usr" headers_install
+
+  # use headers from libdrm
+  rm -r "$pkgdir/usr/include/drm"
+}
+
+pkgname=("${pkgbase}" "${pkgbase}-headers" "${pkgbase}-api-headers")
 for _p in ${pkgname[@]}; do
   eval "package_${_p}() {
     _package${_p#${pkgbase}}
