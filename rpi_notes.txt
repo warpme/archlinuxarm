@@ -1,0 +1,13 @@
+
+1. by some reason - at very first start, when frontend searches backend via uPNP - frontend sometimes crasches.
+It looks like before crash - backend is corectly discovered - so simple starting mythfrontend.sh again gives working
+frontend. I don't have this issue on MiniMyth2 - so it looks to me this is Archlinux speciffic issue.
+
+2. at very first start - walking on mythtv menus is a bit slow with some pauses. This is becasue mythtv
+and GPU driver builds their caches.
+
+3. if you want to use HEVC 4k hardware video decoding - remember increas CMA mamory to 384M.
+
+4. in my expierience best is to use mythtv on RPI in EGLFS mode (mythfrontend.sh eglfs).
+When you are going with EGLFS - remember to stop your Xorg server
+
