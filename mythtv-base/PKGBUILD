@@ -4,13 +4,13 @@ pkgname=mythtv-base
 skip_all_patches="no"
 _gitroot=https://github.com/MythTV/mythtv.git
 _gitbranch=master
-# 20.09.2022
-_gitrev=3e35f6c03767c85595a80d0853df793367b3bf6f
+# 19.12.2022
+_gitrev=8beba432b0e95c72be47761a0f828472e7efd3f3
 pkgrel=1
 #------------------------
 
 
-pkgver=master.20220919.3e35f6c0
+pkgver=master.20221218.8beba432
 pkgrel=1
 pkgdesc="A Homebrew PVR project"
 arch=('aarch64')
