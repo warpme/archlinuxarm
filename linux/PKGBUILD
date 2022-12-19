@@ -2,18 +2,18 @@
 # skip_all_patches=yes
 
 pkgbase=linux-aarch64
-_srcname=linux-5.19
+_srcname=linux-6.1
 _kernelname=${pkgbase#linux}
 _desc="AArch64 multi-platform"
-pkgver=5.19.9
+pkgver=6.1
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'dtc')
 options=('!strip')
-source=("http://www.kernel.org/pub/linux/kernel/v5.x/${_srcname}.tar.xz"
-        "http://www.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
+source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
+        "http://www.kernel.org/pub/linux/kernel/v6.x/patch-${pkgver}.xz"
         'config'
         'kernel.keyblock'
         'kernel_data_key.vbprivk'
