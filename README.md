@@ -25,11 +25,11 @@ You can burn this to SD card, insert to TVbox and you should have running Archli
 After resizing root partition you can upgrade to most current kernel from this repo and install i.e. EdneavourOS.
 See instructions in https://github.com/warpme/archlinuxarm/blob/master/install_endeavouros.txt
 
-### linux-aarch64-5.19.9-1-aarch64.pkg.tar.xz
-ArchLinux package with 5.19.9 kernel. Useful when you want to upgrade Your Archlinux install to 5.19 kernel offering
+### linux-aarch64-6.1-1-aarch64.pkg.tar.xz
+ArchLinux package with 6.1 kernel. Useful when you want to upgrade Your Archlinux install to 6.1 kernel offering
 functionality like described above.
 
-### mythtv-base master.20220919.3e35f6c0-1
+### mythtv-base master.20221218.8beba432-1
 Package with current MythTV master build offering playback capabilities like in 
 https://github.com/warpme/minimyth2#hardware-video-decode-support
 
