@@ -45,7 +45,6 @@ depends=(
     'python-simplejson'
     'python-dateutil'
     'qt5-script'
-    'qt5-webkit'
     'taglib'
     'x264'
 )
@@ -80,7 +79,6 @@ makedepends=(
     'python-requests'
     'python-simplejson'
     'qt5-script'
-    'qt5-webkit'
     'taglib'
     'x264'
     'yasm'
