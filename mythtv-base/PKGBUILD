@@ -19,6 +19,7 @@ license=('GPL')
 install=mythtv-base.install
 depends=(
     'exiv2'
+    'icu'
     'lame'
     'libass'
     'libavc1394'
@@ -33,6 +34,7 @@ depends=(
     'libxml2'
     'libzip'
     'libxrandr'
+    'openssl'
     'perl-dbd-mysql'
     'perl-io-socket-inet6'
     'perl-libwww'
