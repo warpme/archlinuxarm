@@ -5,12 +5,12 @@ skip_all_patches="no"
 _gitroot=https://github.com/MythTV/mythtv.git
 _gitbranch=master
 # 19.12.2022
-_gitrev=8beba432b0e95c72be47761a0f828472e7efd3f3
+_gitrev=b85048f6a11a3c56f67abe68989f064df0a04c27
 pkgrel=1
 #------------------------
 
 
-pkgver=master.20221218.8beba432
+pkgver=master.20230112.b85048f6
 pkgrel=1
 pkgdesc="A Homebrew PVR project"
 arch=('aarch64')
@@ -52,6 +52,7 @@ makedepends=(
     'exiv2'
     'git'
     'help2man'
+    'icu'
     'lame'
     'libass'
     'libavc1394'
