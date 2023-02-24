@@ -23,13 +23,12 @@ Install basic build packages
 pacman -S base-devel mc sudo fakeroot binutils tmux patch wget git rsync unzip xmlto docbook-xsl inetutils bc uboot-tools dtc
 
 
-Build mythtv
+Build kernel
 ============
 -adjust parallel make jobs in /etc/makepkg.conf
--clone package sources
--cd linux and update MAKEPKG & patches
+-cd linux and update PKGBUILD & patches
 -build:
-makepkg --skipinted
+makepkg --skipinteg
 
 happy building!
 
