@@ -5,12 +5,12 @@ skip_all_patches="no"
 _gitroot=https://github.com/MythTV/mythtv.git
 _gitbranch=master
 # 23.05.2023
-_gitrev=2a0e338c09192497b23990df3afa9a3bf650058c
+_gitrev=07a8c2b86db3abcf4c075de81981bf96b78c7ede
 pkgrel=1
 #------------------------
 
 
-pkgver=master.20230522.2a0e338c
+pkgver=master.20230522.07a8c2b8
 pkgrel=1
 pkgdesc="A Homebrew PVR project"
 arch=('aarch64')
@@ -46,7 +46,7 @@ depends=(
     'python-requests'
     'python-simplejson'
     'python-dateutil'
-    'qt5-script'
+    'qt6-base'
     'taglib'
     'x264'
 )
@@ -83,7 +83,7 @@ makedepends=(
     'python-mysqlclient'
     'python-requests'
     'python-simplejson'
-    'qt5-script'
+    'qt6-base'
     'taglib'
     'x264'
     'yasm'
@@ -197,7 +197,7 @@ build() {
       --enable-v4l2 \
       --enable-v4l2request \
       --enable-silent-cc \
-      --qmake=/usr/lib/qt5/bin/qmake \
+      --qmake=/usr/lib/qt6/bin/qmake \
 
     make || return 1
 }
