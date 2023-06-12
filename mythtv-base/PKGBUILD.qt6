@@ -85,6 +85,7 @@ makedepends=(
     'python-simplejson'
     'qt6-base'
     'taglib'
+    'ttf-liberation'
     'x264'
     'yasm'
 )
